@@ -16,6 +16,7 @@ public class MainInicial extends AppCompatActivity {
         setContentView(R.layout.activity_main_inicial);
 
         final EditText edtnome = (EditText)findViewById(R.id.editText_nome);
+
         final EditText edtNumero = (EditText)findViewById(R.id.editText_numero);
 
         Button btnOK = (Button)findViewById(R.id.button_aceitar);

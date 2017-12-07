@@ -23,17 +23,29 @@ public class MainActivity extends AppCompatActivity {
     EditText number;
     EditText msg;
     Button btnEnviarSms;
+    IntentFilter intentFilter;
     private static final int RESULT_NUMERO=1;
     public  static final String CONFIG = "ConfigFile";
+
+    private BroadcastReceiver intentReceived = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            TextView interacao = (TextView)findViewById(R.id.textview_Interacao);
+            interacao.setText(intent.getExtras().getString("sms"));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //intentFilter
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("SMS_RECEIVED_ACTION");
 
         number = (EditText) findViewById(R.id.editText_numero);
-        msg = (EditText) findViewById(R.id.editText_digitaSms);
-        btnEnviarSms = (Button) findViewById(R.id.button_enviar);
+       // msg = (EditText) findViewById(R.id.editText_digitaSms);
+       // btnEnviarSms = (Button) findViewById(R.id.button_enviar);
 
         //Recuperando dados de configuração
         SharedPreferences settings = getSharedPreferences(CONFIG, 0);
@@ -47,15 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
         mostrarDados(nomeStr,numberStr);
-        btnEnviarSms.setOnClickListener(new View.OnClickListener() {
+      /*  btnEnviarSms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                msgStr = msg.getText().toString();
+               // msgStr = msg.getText().toString();
 
                 //Enviar mensagem
-                sendSms(numberStr, msgStr);
+               // sendSms(numberStr, msgStr);
             }
-        });
+        });*/
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -113,9 +125,7 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-               // if(Activity.RESULT_OK==1){
 
-                //}
                 switch (getResultCode()){
                     case Activity.RESULT_OK:
                         Toast.makeText(getBaseContext(),"Mensagem Recebida!!!",Toast.LENGTH_SHORT).show();
@@ -136,5 +146,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    protected void onResume(){
+        registerReceiver(intentReceived,intentFilter);
+        super.onResume();
+    }
+    protected void onPause(){
+        unregisterReceiver(intentReceived);
+        super.onPause();
+    }
+
+
 
 }

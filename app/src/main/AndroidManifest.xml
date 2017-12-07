@@ -20,6 +20,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainInicial"></activity>
+
+        <receiver android:name=".Util.SmsReceive">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED">
+
+                </action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

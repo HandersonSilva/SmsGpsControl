@@ -1,0 +1,41 @@
+package com.example.handerson.smsgpscontrol.Util;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.telephony.SmsMessage;
+import android.widget.Toast;
+
+/**
+ * Created by handerson on 02/05/17.
+ */
+
+public class SmsReceive extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Bundle bundle =intent.getExtras();
+        SmsMessage [] messages = null;
+        String str = "";
+        if (bundle!= null){
+            //recebendo a mensagem
+            Object[] pdus =(Object[])bundle.get("pdus");
+            messages = new SmsMessage[pdus.length];
+            for (int i=0;i<messages.length;i++){
+                messages[i]=SmsMessage.createFromPdu((byte[])pdus[i]);
+                str +="Message From"+messages[i].getOriginatingAddress();
+                str+="";
+                str+=messages[i].getMessageBody().toString();
+                str+="\n";
+            }
+            Toast.makeText(context,str,Toast.LENGTH_LONG).show();
+        }
+        //send broadcast for main
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("SMS_RECEIVED_ACTION");
+        broadcastIntent.putExtra("sms",str);
+        context.sendBroadcast(broadcastIntent);
+
+    }
+}

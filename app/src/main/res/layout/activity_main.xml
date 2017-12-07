@@ -8,43 +8,6 @@
     tools:context="com.example.handerson.smsgpscontrol.MainActivity">
 
     <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="590dp"
-        android:background="#FFA500"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="71dp">
-
-        <LinearLayout
-            android:id="@+id/layout_mostrarsms"
-            android:layout_width="500dp"
-            android:layout_height="120dp"
-            android:background="#FFFACD"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"></LinearLayout>
-
-        <EditText
-            android:id="@+id/editText_digitaSms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:layout_above="@+id/button_enviar"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:id="@+id/button_enviar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enviar"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:layout_width="367dp"
         android:layout_height="60dp"
         android:background="#fff"
@@ -106,6 +69,64 @@
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/imageView2"
             android:layout_toEndOf="@+id/imageView2" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="590dp"
+        android:background="#FFA500"
+        tools:layout_editor_absoluteX="-4dp"
+        tools:layout_editor_absoluteY="68dp">
+
+        <LinearLayout
+            android:id="@+id/layout_mostrarsms"
+            android:layout_width="330dp"
+            android:layout_height="140dp"
+            android:background="#FFFACD"
+            android:orientation="horizontal"
+            android:layout_below="@+id/button3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp">
+
+            <TextView
+                android:id="@+id/textview_Interacao"
+                android:layout_width="wrap_content"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:text="Olá.."
+                android:textColor="#000"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_marginTop="50px"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:text="Bloquear"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:text="Localização"
+            android:layout_below="@+id/button"
+            android:layout_alignLeft="@+id/button"
+            android:layout_alignStart="@+id/button"
+            android:layout_marginTop="13dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="13dp"
+            android:text="Monitorar"
+            android:layout_below="@+id/button2"
+            android:layout_alignLeft="@+id/button2"
+            android:layout_alignStart="@+id/button2" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
